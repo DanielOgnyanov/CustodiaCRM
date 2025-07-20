@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 public class User extends BaseEntity implements Serializable {
 
+
     @Column(nullable = false, unique = true)
     @NotBlank(message = "Username is required")
     private String username;
