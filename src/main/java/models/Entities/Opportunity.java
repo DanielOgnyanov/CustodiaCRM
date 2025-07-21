@@ -1,16 +1,14 @@
 package models.Entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import models.Enums.OpportunityStatus;
 
 import java.time.LocalDateTime;
 
@@ -29,6 +27,10 @@ public class Opportunity extends BaseEntity{
 
     @NotNull(message = "Estimated value is required")
     private double estimatedValue;
+
+    @NotNull(message = "Status is required")
+    @Enumerated(EnumType.STRING)
+    private OpportunityStatus status;
 
     @ManyToOne(optional = false)
     private Customer customer;
