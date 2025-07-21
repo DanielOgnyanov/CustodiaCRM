@@ -60,4 +60,9 @@ public class User extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "assignedUser")
     private List<Contact> contacts = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "assignedUser", cascade = CascadeType.ALL)
+    private List<Opportunity> opportunities = new ArrayList<>();
+
 }
