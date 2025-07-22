@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 import models.Enums.OpportunityStatus;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "opportunities")
@@ -44,4 +46,8 @@ public class Opportunity extends BaseEntity{
     public void setCreatedAt() {
         this.createdAt = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "opportunity", cascade = CascadeType.ALL)
+    private List<Note> notes = new ArrayList<>();
+
 }

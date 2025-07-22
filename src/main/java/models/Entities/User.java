@@ -65,4 +65,8 @@ public class User extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "assignedUser", cascade = CascadeType.ALL)
     private List<Opportunity> opportunities = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Note> notes = new ArrayList<>();
+
 }
