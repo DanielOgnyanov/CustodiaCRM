@@ -1,4 +1,4 @@
-package org.example.custodiacrm.models.Enums;
+package org.example.custodiacrm.models.enums;
 
 public enum UserRole {
 

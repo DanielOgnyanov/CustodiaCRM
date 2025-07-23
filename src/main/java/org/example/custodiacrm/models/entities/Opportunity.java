@@ -1,4 +1,4 @@
-package org.example.custodiacrm.models.Entities;
+package org.example.custodiacrm.models.entities;
 
 
 import jakarta.persistence.*;
@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.custodiacrm.models.Enums.OpportunityStatus;
+import org.example.custodiacrm.models.enums.OpportunityStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

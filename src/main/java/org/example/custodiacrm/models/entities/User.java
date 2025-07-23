@@ -1,4 +1,4 @@
-package org.example.custodiacrm.models.Entities;
+package org.example.custodiacrm.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.custodiacrm.models.Enums.UserRole;
+import org.example.custodiacrm.models.enums.UserRole;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package org.example.custodiacrm.repositories;
 
-import org.example.custodiacrm.models.Entities.User;
+import org.example.custodiacrm.models.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
