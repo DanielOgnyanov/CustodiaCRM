@@ -1,4 +1,4 @@
-package models.Entities;
+package org.example.custodiacrm.models.Entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import models.Enums.CustomerStatus;
+import org.example.custodiacrm.models.Enums.CustomerStatus;
 
 import java.util.ArrayList;
 import java.util.List;

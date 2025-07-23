@@ -1,4 +1,4 @@
-package models.Entities;
+package org.example.custodiacrm.models.Entities;
 
 import jakarta.persistence.*;
 
