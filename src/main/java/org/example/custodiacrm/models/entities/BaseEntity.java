@@ -6,14 +6,11 @@ import jakarta.persistence.*;
 public abstract class BaseEntity {
 
 
-    private Long id;
-
-    public BaseEntity() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false,unique = true)
+    @Column(name = "id", nullable = false, updatable = false, unique = true)
+    private Long id;
+
     public Long getId() {
         return id;
     }
