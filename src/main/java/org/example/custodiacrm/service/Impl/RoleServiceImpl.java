@@ -28,4 +28,13 @@ public class RoleServiceImpl implements RoleService {
         }
 
     }
+
+
+
+    @Override
+    public Role findByRoleName(String roleName) {
+        UserRole roleEnum = UserRole.valueOf(roleName);
+        return roleRepository.findByName(roleEnum)
+                .orElse(null);
+    }
 }
