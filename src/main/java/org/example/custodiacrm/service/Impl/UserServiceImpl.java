@@ -1,7 +1,10 @@
 package org.example.custodiacrm.service.Impl;
 
+import org.example.custodiacrm.models.dto.UserRegisterDto;
+import org.example.custodiacrm.models.entities.Role;
 import org.example.custodiacrm.models.entities.User;
 import org.example.custodiacrm.models.enums.UserRole;
+import org.example.custodiacrm.repositories.RoleRepository;
 import org.example.custodiacrm.repositories.UserRepository;
 import org.example.custodiacrm.service.UserService;
 
@@ -12,11 +15,13 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.roleRepository = roleRepository;
     }
 
 
@@ -41,6 +46,33 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void register(UserRegisterDto userRegisterDto) {
+        if (userRepository.existsByEmail(userRegisterDto.getEmail())) {
+            throw new IllegalArgumentException("Email already exists");
+        }
+
+        if (userRepository.existsByUsername(userRegisterDto.getUsername())) {
+            throw new IllegalArgumentException("Username already exists");
+        }
+
+        Role userRole = roleRepository.findByName(UserRole.USER)
+                .orElseThrow(() -> new IllegalStateException("Default USER role not found in database"));
+
+        User user = User.builder()
+                .username(userRegisterDto.getUsername())
+                .firstName(userRegisterDto.getFirstName())
+                .lastName(userRegisterDto.getLastName())
+                .email(userRegisterDto.getEmail())
+                .phoneNumber(userRegisterDto.getPhoneNumber())
+                .password(passwordEncoder.encode(userRegisterDto.getPassword()))
+                .role(userRole.getName())
+                .build();
+
+        userRepository.save(user);
+
+
+    }
 
 
 }
