@@ -1,6 +1,8 @@
 package org.example.custodiacrm.web;
 
 
+import org.example.custodiacrm.models.dto.LoginRequestDTO;
+import org.example.custodiacrm.models.dto.LoginResponseDTO;
 import org.example.custodiacrm.models.dto.UserRegisterDto;
 import org.example.custodiacrm.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,4 +24,11 @@ public class UserController {
         userService.register(userRegisterDto);
         return ResponseEntity.ok("User registered successfully");
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequest) {
+        LoginResponseDTO response = userService.login(loginRequest);
+        return ResponseEntity.ok(response);
+    }
+
 }

@@ -1,5 +1,8 @@
 package org.example.custodiacrm.service.Impl;
 
+import org.example.custodiacrm.config.JwtUtil;
+import org.example.custodiacrm.models.dto.LoginRequestDTO;
+import org.example.custodiacrm.models.dto.LoginResponseDTO;
 import org.example.custodiacrm.models.dto.UserRegisterDto;
 import org.example.custodiacrm.models.entities.Role;
 import org.example.custodiacrm.models.entities.User;
@@ -11,17 +14,21 @@ import org.example.custodiacrm.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, JwtUtil jwtUtil) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.jwtUtil = jwtUtil;
     }
 
 
@@ -72,6 +79,25 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
 
+    }
+
+    @Override
+    public LoginResponseDTO login(LoginRequestDTO request) {
+        Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
+
+        if (userOpt.isEmpty()) {
+            throw new RuntimeException("Invalid email or password");
+        }
+
+        User user = userOpt.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid email or password");
+        }
+
+        String token = jwtUtil.generateToken(user.getEmail());
+
+        return new LoginResponseDTO(token);
     }
 
 
