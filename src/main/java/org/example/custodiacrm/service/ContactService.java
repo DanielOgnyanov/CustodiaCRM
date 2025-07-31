@@ -4,5 +4,6 @@ import org.example.custodiacrm.models.dto.CreateContactDTO;
 
 public interface ContactService {
 
-    void createContact(CreateContactDTO createContactDTO);
+    void addContactToCustomer(CreateContactDTO createContactDTO);
+
 }

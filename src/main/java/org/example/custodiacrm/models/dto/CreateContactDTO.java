@@ -1,5 +1,8 @@
 package org.example.custodiacrm.models.dto;
 
+import lombok.Data;
+
+@Data
 public class CreateContactDTO {
 
     private String firstName;

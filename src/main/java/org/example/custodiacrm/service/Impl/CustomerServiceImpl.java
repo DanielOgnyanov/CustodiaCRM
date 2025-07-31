@@ -32,6 +32,10 @@ public class CustomerServiceImpl implements CustomerService {
         User currentUser = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        if (customerRepository.existsByEmail(dto.getEmail())) {
+            throw new RuntimeException("A customer with this email already exists.");
+        }
+
         Customer customer = Customer.builder()
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
