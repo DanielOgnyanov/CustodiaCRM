@@ -1,7 +1,6 @@
 package org.example.custodiacrm.service.Impl;
 
-import lombok.RequiredArgsConstructor;
-import org.example.custodiacrm.models.dto.CreateCustomerDto;
+import org.example.custodiacrm.models.dto.CreateCustomerDTO;
 import org.example.custodiacrm.models.entities.Customer;
 import org.example.custodiacrm.models.entities.User;
 import org.example.custodiacrm.repositories.CustomerRepository;
@@ -25,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public void createCustomer(CreateCustomerDto dto) {
+    public void createCustomer(CreateCustomerDTO dto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
 

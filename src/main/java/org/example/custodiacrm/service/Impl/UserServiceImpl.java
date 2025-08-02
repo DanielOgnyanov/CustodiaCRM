@@ -3,7 +3,7 @@ package org.example.custodiacrm.service.Impl;
 import org.example.custodiacrm.config.JwtUtil;
 import org.example.custodiacrm.models.dto.LoginRequestDTO;
 import org.example.custodiacrm.models.dto.LoginResponseDTO;
-import org.example.custodiacrm.models.dto.UserRegisterDto;
+import org.example.custodiacrm.models.dto.UserRegisterDTO;
 import org.example.custodiacrm.models.entities.Role;
 import org.example.custodiacrm.models.entities.User;
 import org.example.custodiacrm.models.enums.UserRole;
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(UserRegisterDto userRegisterDto) {
+    public void register(UserRegisterDTO userRegisterDto) {
         if (userRepository.existsByEmail(userRegisterDto.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
         }

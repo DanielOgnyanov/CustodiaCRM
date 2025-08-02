@@ -3,7 +3,7 @@ package org.example.custodiacrm.web;
 
 import org.example.custodiacrm.models.dto.LoginRequestDTO;
 import org.example.custodiacrm.models.dto.LoginResponseDTO;
-import org.example.custodiacrm.models.dto.UserRegisterDto;
+import org.example.custodiacrm.models.dto.UserRegisterDTO;
 import org.example.custodiacrm.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDto userRegisterDto) {
+    public ResponseEntity<String> registerUser(@RequestBody UserRegisterDTO userRegisterDto) {
         userService.register(userRegisterDto);
         return ResponseEntity.ok("User registered successfully");
     }

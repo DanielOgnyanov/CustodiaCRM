@@ -1,8 +1,7 @@
 package org.example.custodiacrm.web;
 
 
-import lombok.RequiredArgsConstructor;
-import org.example.custodiacrm.models.dto.CreateCustomerDto;
+import org.example.custodiacrm.models.dto.CreateCustomerDTO;
 import org.example.custodiacrm.service.CustomerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +21,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createCustomer(@RequestBody CreateCustomerDto dto) {
+    public ResponseEntity<String> createCustomer(@RequestBody CreateCustomerDTO dto) {
         customerService.createCustomer(dto);
         return ResponseEntity.ok("Customer created successfully");
     }
