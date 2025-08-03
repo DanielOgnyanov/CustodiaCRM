@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV
           echo "DB_PORT=3306" >> $GITHUB_ENV
-          echo "DB_NAME=custodia" >> $GITHUB_ENV
+          echo "DB_NAME=custodiaCRM" >> $GITHUB_ENV          
           echo "DB_USER=custodiauser" >> $GITHUB_ENV
           echo "DB_PASSWORD=custodiapass" >> $GITHUB_ENV
 
