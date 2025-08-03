@@ -14,6 +14,8 @@ CustodiaCRM is a Spring Boot based Customer Relationship Management (CRM) system
 - RESTful API support with Spring Boot
 - Lombok for reducing boilerplate code
 - OpenAPI documentation integration
+- **Docker support for easy containerized deployment**
+- **Continuous Integration (CI) pipeline configured with GitHub Actions**
 
 ---
 
@@ -26,6 +28,8 @@ CustodiaCRM is a Spring Boot based Customer Relationship Management (CRM) system
 - Lombok
 - H2 (for testing/dev in-memory database)
 - SpringDoc OpenAPI
+- Docker
+- GitHub Actions (CI/CD)
 
 ---
 
@@ -33,9 +37,10 @@ CustodiaCRM is a Spring Boot based Customer Relationship Management (CRM) system
 
 ### Prerequisites
 
-- Java 17 or higher
+- Java 17 or higher (if running locally without Docker)
 - Maven 3.8+
 - MySQL database (or use H2 for testing)
+- Docker (for containerized deployment)
 - Git (optional, for cloning the repo)
 
 ### Installation
