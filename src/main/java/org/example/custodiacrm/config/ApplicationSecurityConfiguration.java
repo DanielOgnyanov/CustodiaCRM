@@ -19,7 +19,7 @@ public class ApplicationSecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/users/register", "/api/users/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(withDefaults());
