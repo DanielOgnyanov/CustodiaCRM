@@ -7,6 +7,7 @@ import org.example.custodiacrm.models.enums.CustomerStatus;
 import org.example.custodiacrm.repositories.CustomerRepository;
 import org.example.custodiacrm.repositories.UserRepository;
 import org.example.custodiacrm.service.Impl.CustomerServiceImpl;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -5,10 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.example.custodiacrm.models.enums.CustomerStatus;
 
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "customers")
 @Data
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -47,13 +45,15 @@ public class Customer extends BaseEntity{
     @ManyToOne
     private User assignedUser;
 
+    @Builder.Default
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contact> contacts = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Opportunity> opportunities = new ArrayList<>();
 
-
+    @Builder.Default
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Note> notes = new ArrayList<>();
 
