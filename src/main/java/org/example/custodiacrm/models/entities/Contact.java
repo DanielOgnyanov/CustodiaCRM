@@ -33,7 +33,6 @@ public class Contact extends BaseEntity{
     @Pattern(regexp = "^[\\d\\-\\+]{9,15}$", message = "Phone number format is invalid")
     private String phoneNumber;
 
-    private String position;
 
     @Column(length = 1000)
     private String notes;
