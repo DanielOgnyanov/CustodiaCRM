@@ -23,8 +23,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void changeUserRole(ChangeUserRoleDTO changeUserRoleDTO) {
+
         User user = userRepository.findByEmail(changeUserRoleDTO.getEmail())
                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        if(user.getRole() != UserRole.ADMIN) {
+            throw new ResourceConflictException("Only ADMIN users can change roles.");
+        }
 
         UserRole newRole;
         try {
