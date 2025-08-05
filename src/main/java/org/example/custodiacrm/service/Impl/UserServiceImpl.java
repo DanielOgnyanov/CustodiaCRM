@@ -88,13 +88,13 @@ public class UserServiceImpl implements UserService {
         Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
 
         if (userOpt.isEmpty()) {
-            throw new RuntimeException("Invalid email or password");
+            throw new ResourceNotFoundException("Invalid email or password");
         }
 
         User user = userOpt.get();
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new RuntimeException("Invalid email or password");
+            throw new ResourceConflictException("Invalid email or password");
         }
 
         String token = jwtUtil.generateToken(user.getEmail());
