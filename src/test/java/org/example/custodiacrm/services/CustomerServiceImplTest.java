@@ -61,7 +61,8 @@ public class CustomerServiceImplTest {
         user.setUsername("johnuser");
 
         Mockito.when(authentication.getName()).thenReturn("johnuser");
-        Mockito.when(userRepository.findByEmail("john.doe@example.com")).thenReturn(Optional.of(user));
+        Mockito.when(userRepository.findByEmail("johnuser")).thenReturn(Optional.of(user));
+
         Mockito.when(customerRepository.save(Mockito.any(Customer.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
