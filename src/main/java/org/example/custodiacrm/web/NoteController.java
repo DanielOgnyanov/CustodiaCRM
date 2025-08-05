@@ -21,7 +21,7 @@ public class NoteController {
     }
 
 
-    @PostMapping("/add-to-customer")
+    @PostMapping("/add")
     public ResponseEntity<String> addNoteToCustomer(@RequestBody CreateNoteDTO createNoteDTO) {
         try {
             noteService.addNoteToCustomer(createNoteDTO);
