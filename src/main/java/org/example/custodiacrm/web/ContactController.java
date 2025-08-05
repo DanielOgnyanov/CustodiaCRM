@@ -20,7 +20,7 @@ public class ContactController {
         this.contactService = contactService;
     }
 
-    @PostMapping("/contacts/add")
+    @PostMapping("/add")
     public ResponseEntity<String> addContactToCustomer(@RequestBody CreateContactDTO contactDTO) {
         try {
             contactService.addContactToCustomer(contactDTO);

@@ -1,5 +1,7 @@
 package org.example.custodiacrm.service.Impl;
 
+import org.example.custodiacrm.exceptions.ResourceConflictException;
+import org.example.custodiacrm.exceptions.ResourceNotFoundException;
 import org.example.custodiacrm.models.dto.CreateCustomerDTO;
 import org.example.custodiacrm.models.entities.Customer;
 import org.example.custodiacrm.models.entities.User;
@@ -29,10 +31,10 @@ public class CustomerServiceImpl implements CustomerService {
         String email = auth.getName();
 
         User currentUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with email: " + email));
 
         if (customerRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("A customer with this email already exists.");
+            throw new ResourceConflictException("A customer with this email already exists.");
         }
 
         Customer customer = Customer.builder()

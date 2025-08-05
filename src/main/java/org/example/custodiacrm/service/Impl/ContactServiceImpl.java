@@ -1,5 +1,6 @@
 package org.example.custodiacrm.service.Impl;
 
+import org.example.custodiacrm.exceptions.ResourceConflictException;
 import org.example.custodiacrm.models.dto.CreateContactDTO;
 import org.example.custodiacrm.models.entities.Contact;
 import org.example.custodiacrm.models.entities.Customer;
@@ -28,7 +29,7 @@ public class ContactServiceImpl implements ContactService {
         Optional<Customer> optionalCustomer = customerRepository.findByEmail(createContactDTO.getEmail());
 
         if (optionalCustomer.isEmpty()) {
-            throw new RuntimeException("Customer with email '" + createContactDTO.getEmail() + "' not found.");
+            throw new ResourceConflictException("Customer with email '" + createContactDTO.getEmail() + "' not found.");
         }
 
         Customer customer = optionalCustomer.get();

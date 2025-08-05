@@ -1,6 +1,8 @@
 package org.example.custodiacrm.service.Impl;
 
 import org.example.custodiacrm.config.JwtUtil;
+import org.example.custodiacrm.exceptions.ResourceConflictException;
+import org.example.custodiacrm.exceptions.ResourceNotFoundException;
 import org.example.custodiacrm.models.dto.LoginRequestDTO;
 import org.example.custodiacrm.models.dto.LoginResponseDTO;
 import org.example.custodiacrm.models.dto.UserRegisterDTO;
@@ -56,15 +58,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserRegisterDTO userRegisterDto) {
         if (userRepository.existsByEmail(userRegisterDto.getEmail())) {
-            throw new IllegalArgumentException("Email already exists");
+            throw new ResourceConflictException("Email already exists");
         }
 
         if (userRepository.existsByUsername(userRegisterDto.getUsername())) {
-            throw new IllegalArgumentException("Username already exists");
+            throw new ResourceConflictException("Username already exists");
         }
 
         Role userRole = roleRepository.findByName(UserRole.USER)
-                .orElseThrow(() -> new IllegalStateException("Default USER role not found in database"));
+                .orElseThrow(() -> new ResourceNotFoundException("Default USER role not found in database"));
 
         User user = User.builder()
                 .username(userRegisterDto.getUsername())
