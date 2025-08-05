@@ -1,5 +1,6 @@
 package org.example.custodiacrm.service.Impl;
 
+import org.example.custodiacrm.exceptions.ResourceNotFoundException;
 import org.example.custodiacrm.models.dto.CreateOpportunityDTO;
 import org.example.custodiacrm.models.entities.Customer;
 import org.example.custodiacrm.models.entities.Opportunity;
@@ -32,14 +33,14 @@ public class OpportunityServiceImpl implements OpportunityService {
 
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        String email = auth.getName();
 
-        User currentUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        User currentUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
 
         Customer customer = customerRepository.findByEmail(createOpportunityDTO.getCustomerEmail())
-                .orElseThrow(() -> new RuntimeException("Customer with provided email not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Customer with provided email not found"));
 
 
         Opportunity opportunity = Opportunity.builder()

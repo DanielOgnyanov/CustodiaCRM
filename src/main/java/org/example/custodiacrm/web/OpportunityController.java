@@ -20,7 +20,7 @@ public class OpportunityController {
         this.opportunityService = opportunityService;
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<String> createOpportunity(@RequestBody CreateOpportunityDTO createOpportunityDTO) {
         try {
             opportunityService.createOpportunity(createOpportunityDTO);
