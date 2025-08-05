@@ -26,9 +26,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void createCustomer(CreateCustomerDTO dto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String username = auth.getName();
+        String email = auth.getName();
 
-        User currentUser = userRepository.findByUsername(username)
+        User currentUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (customerRepository.existsByEmail(dto.getEmail())) {
