@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ChangeUserRoleDTO {
-    private String username;
+    private String email;
     private String newRole;
 }

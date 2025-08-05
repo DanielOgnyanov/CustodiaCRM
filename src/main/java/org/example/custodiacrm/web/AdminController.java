@@ -22,6 +22,7 @@ public class AdminController {
 
     @PutMapping("/change-role")
     public ResponseEntity<String> changeUserRole(@RequestBody ChangeUserRoleDTO dto) {
+
         try {
             adminService.changeUserRole(dto);
             return ResponseEntity.ok("User role updated successfully.");
