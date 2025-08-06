@@ -3,6 +3,7 @@ package org.example.custodiacrm.service.Impl;
 import org.example.custodiacrm.config.JwtUtil;
 import org.example.custodiacrm.exceptions.ResourceConflictException;
 import org.example.custodiacrm.exceptions.ResourceNotFoundException;
+import org.example.custodiacrm.models.dto.GetUsersDTO;
 import org.example.custodiacrm.models.dto.LoginRequestDTO;
 import org.example.custodiacrm.models.dto.LoginResponseDTO;
 import org.example.custodiacrm.models.dto.UserRegisterDTO;
@@ -16,6 +17,7 @@ import org.example.custodiacrm.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -100,6 +102,22 @@ public class UserServiceImpl implements UserService {
         String token = jwtUtil.generateToken(user.getEmail());
 
         return new LoginResponseDTO(token, user.getUsername(), user.getRole().toString());
+    }
+
+    @Override
+    public List<GetUsersDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(user -> GetUsersDTO.builder()
+                        .id(user.getId())
+                        .username(user.getUsername())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .email(user.getEmail())
+                        .role(user.getRole().name())
+                        .phoneNumber(user.getPhoneNumber())
+                        .createdAt(user.getCreatedAt())
+                        .build())
+                .toList();
     }
 
 

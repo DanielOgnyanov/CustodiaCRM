@@ -1,12 +1,16 @@
 package org.example.custodiacrm.web;
 
 
+import org.example.custodiacrm.models.dto.GetUsersDTO;
 import org.example.custodiacrm.models.dto.LoginRequestDTO;
 import org.example.custodiacrm.models.dto.LoginResponseDTO;
 import org.example.custodiacrm.models.dto.UserRegisterDTO;
 import org.example.custodiacrm.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -30,5 +34,12 @@ public class UserController {
         LoginResponseDTO response = userService.login(loginRequest);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping
+    public ResponseEntity<List<GetUsersDTO>> getAllUsers() {
+        List<GetUsersDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
 
 }
