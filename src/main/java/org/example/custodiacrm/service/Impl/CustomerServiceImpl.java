@@ -58,6 +58,10 @@ public class CustomerServiceImpl implements CustomerService {
     public List<GetCustomersDTO> getAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
 
+        if (customers.isEmpty()) {
+            throw new ResourceNotFoundException("No customers found");
+        }
+
         return customers.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
