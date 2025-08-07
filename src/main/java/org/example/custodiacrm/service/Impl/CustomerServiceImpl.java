@@ -7,6 +7,7 @@ import org.example.custodiacrm.models.entities.*;
 import org.example.custodiacrm.repositories.CustomerRepository;
 import org.example.custodiacrm.repositories.UserRepository;
 import org.example.custodiacrm.service.CustomerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -57,10 +58,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public List<GetCustomersDTO> getAllCustomers() {
         List<Customer> customers = customerRepository.findAll();
-
-        if (customers.isEmpty()) {
-            throw new ResourceNotFoundException("No customers found");
-        }
 
         return customers.stream()
                 .map(this::mapToDTO)
